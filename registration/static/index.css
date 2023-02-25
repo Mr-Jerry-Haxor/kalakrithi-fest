@@ -1,0 +1,28 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgb(0, 0, 0) no-repeat 50% 50%;
+    background-size: cover;
+}
+
+.btn a{    
+    color: #fff;
+    align-items: center;
+    text-decoration: red;
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    
+}
+
+.btn a:hover{
+    color: rgb(228, 177, 9);
+    text-decoration: none;
+}
+
+#content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
