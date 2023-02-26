@@ -18,7 +18,7 @@ def savedetails(request):
     if request.method == 'POST':
       fullname = request.POST.get('fullname')
       registrationnumber = request.POST.get('registrationnumber')
-      email = request.user.email
+      email = request.POST.get('email')
       phone = request.POST.get('phone')
       year = request.POST.get('year')
       branch = request.POST.get('branch')
