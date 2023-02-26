@@ -17,3 +17,9 @@ class participant(models.Model):
   institute = models.CharField(max_length=100)
   campus = models.CharField(max_length=100)
   registrar = models.CharField(max_length=200)
+  qrtext = models.CharField(max_length=200,default="")
+  qrhash = models.CharField(max_length=200,default="")
+
+
+class registrar(models.Model):
+  email = models.EmailField(max_length=200)

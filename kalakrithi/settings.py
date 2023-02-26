@@ -99,9 +99,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
@@ -147,3 +144,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '146228340074-4bs08fag8pogh9mvc6p8f3qvk6u36q5k.a
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 SESSION_COOKIE_AGE = 60 * 60 * 24
+
+CSRF_TRUSTED_ORIGINS = ['https://kalakrithi-fest.shravanjerry007.repl.co','https://*.127.0.0.1']
+
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
