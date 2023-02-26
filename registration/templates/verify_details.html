@@ -16,66 +16,67 @@
 
   
   <div style="padding-left:30px;">
-    <h1>Fill the Student details</h1>
-      <form action="{% url 'savedetails' %}" method="post" validate>
+    <h1>Verify the Student details</h1>
+    <center><img id="Image1" src="{{ imglink }}" style="height:114px;width:109px;border-width:0px;"></center><br>
+      <form action="{% url 'verifydetails' %}" method="post" validate>
     {% csrf_token %}
 
     <div class="form-group">
-      <label for="{{ form.fullname.id_for_label }}">{{ form.fullname.label }}</label> <br>
+      <label for="{{ form.fullname.id_for_label }}">{{ form.fullname.label }}</label> 
       {{ form.fullname }}
     </div>
  <br>
     
     <div class="form-group">
-      <label for="{{ form.registrationnumber.id_for_label }}">{{ form.registrationnumber.label }}</label><br>
+      <label for="{{ form.registrationnumber.id_for_label }}">{{ form.registrationnumber.label }}</label>
       {{ form.registrationnumber }}
     </div> <br>
     <div class="form-group">
-      <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label> <br>
+      <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label> 
       {{ form.email }}
     </div> <br>
     <div class="form-group">
-      <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label> <br>
+      <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label> 
       {{ form.phone }}
     </div> <br>
     <div class="form-group">
-      <label for="{{ form.year.id_for_label }}">{{ form.year.label }}</label> <br>
+      <label for="{{ form.year.id_for_label }}">{{ form.year.label }}</label> 
       {{ form.year }}
     </div> <br>
     <div class="form-group">
-      <label for="{{ form.branch.id_for_label }}">{{ form.branch.label }}</label> <br>
+      <label for="{{ form.branch.id_for_label }}">{{ form.branch.label }}</label>
       {{ form.branch }}
     </div> <br>
     <div class="form-group">
-      <label for="{{ form.institute.id_for_label }}">{{ form.institute.label }}</label> <br>
+      <label for="{{ form.institute.id_for_label }}">{{ form.institute.label }}</label> 
       {{ form.institute }}
     </div> <br>
     <div class="form-group">
-      <label for="{{ form.campus.id_for_label }}">{{ form.campus.label }}</label> <br>
+      <label for="{{ form.campus.id_for_label }}">{{ form.campus.label }}</label> 
       {{ form.campus }}
     </div>
         <br>
     <div class="form-group">
-      <label for="{{ form.qrtext.id_for_label }}">{{ form.qrtext.label }}</label> <br>
+      <label for="{{ form.qrtext.id_for_label }}">{{ form.qrtext.label }}</label> 
       {{ form.qrtext }}
     </div>
         <br>
     <div class="form-group">
-      <label for="{{ form.qrhash.id_for_label }}">{{ form.qrhash.label }}</label> <br>
+      <label for="{{ form.qrhash.id_for_label }}">{{ form.qrhash.label }}</label> 
       {{ form.qrhash }}
     </div>
         <br>
     <div class="form-group">
-      <label for="{{ form.registrar.id_for_label }}">{{ form.registrar.label }}</label> <br>
-      {{ form.registrar }}
+      <label for="{{ form.verifiedby.id_for_label }}">{{ form.verifiedby.label }}</label> 
+      {{ form.verifiedby }}
     </div>   <br> <br>
-   <button type="submit" value="Submit" class="btn btn-outline-primary"
-   >Submit</button>
- 
+   <center><button type="submit" value="Submit" class="btn btn-outline-primary"
+   >Admit</button></center>
+  
     </form>
     <br>
-    
-    <a type="button" class="btn btn-outline-primary" href="{% url 'register' %}">Go back</a>
+    <center>
+    <a type="button" class="btn btn-outline-primary" href="{% url 'verify' %}">Go back</a></center>
     <br>
     <br>
   </div>

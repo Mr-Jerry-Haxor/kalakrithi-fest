@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'registration',
-    'verification',
     'social_django',
     'import_export',
 ]
@@ -114,6 +113,8 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Calcutta'
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = False
 

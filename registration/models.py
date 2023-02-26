@@ -23,3 +23,21 @@ class participant(models.Model):
 
 class registrar(models.Model):
   email = models.EmailField(max_length=200)
+
+
+class verification_status(models.Model):
+  fullname = models.CharField(max_length=200)
+  registrationnumber = models.CharField(max_length=100)
+  email = models.EmailField(max_length=200)
+  qrtext = models.CharField(max_length=200)
+  qrhash = models.CharField(max_length=200)
+  status = models.CharField(max_length=200)
+
+
+class entries(models.Model):
+  registrationnumber = models.CharField(max_length=100)
+  qrtext = models.CharField(max_length=200)
+  qrhash = models.CharField(max_length=200)
+  date = models.DateField()
+  time = models.TimeField()
+  verifiedby = models.CharField(max_length=200)
