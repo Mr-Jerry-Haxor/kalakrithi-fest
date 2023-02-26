@@ -10,7 +10,15 @@
 
 </head>
 <body>
-    
+<br><br>
+  <div style="padding-left:30px;">
+  {% if messages %}
+      {% for message in messages %}
+<div {% if message.tags %} class="{{ message.tags }}"{% endif %} > <h3>{{ message }}</h3></div>
+      {% endfor %}
+  {% endif %}
+  </div>
+  
 
     <style>
         #preview{
@@ -29,6 +37,9 @@
     scanner.addListener('scan',function(content){
         var inputcontent = content;
         document.getElementById("id_qrtext").value = inputcontent;
+        document.getElementById("submitbtn").disabled = false;
+      
+        
 
         //window.location.href=content; 
     });
@@ -52,12 +63,12 @@
   {{ form.qrtext }}<br><br>
   <label for="{{ form.registrar.id_for_label }}">{{ form.registrar.label }}</label><br>
   {{ form.registrar }}<br><br>
-  <button style="padding:5px; position:relative; left:70px;" type="submit" value="Submit" >Submit</button>
+  <button style="padding:5px; position:relative; left:70px;" class="btn btn-outline-primary" id="submitbtn" type="submit" value="" disabled="autofocus" >submit</button>
 </form>
 </form>
 
   <br>
     <br>
-    <a type="button" class="btn btn-outline-primary" href="{% url 'logout' %}">Logout</a>
+    <a type="button" style="padding:5px; position:relative; left:169px;" class="btn btn-outline-primary" href="{% url 'logout' %}">Logout</a>
 </body>
 </html>

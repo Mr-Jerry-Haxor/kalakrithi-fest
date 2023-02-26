@@ -10,6 +10,12 @@
 
 </head>
 <body>
+  
+  
+
+
+  
+  <div style="padding-left:30px;">
     <h1>Fill the Student details</h1>
       <form action="{% url 'savedetails' %}" method="post" validate>
     {% csrf_token %}
@@ -21,7 +27,7 @@
  <br>
     
     <div class="form-group">
-      <label for="{{ form.registrationnumber.id_for_label }}">{{ form.registrationnumber.label }}</label>
+      <label for="{{ form.registrationnumber.id_for_label }}">{{ form.registrationnumber.label }}</label><br>
       {{ form.registrationnumber }}
     </div> <br>
     <div class="form-group">
@@ -63,10 +69,13 @@
       <label for="{{ form.registrar.id_for_label }}">{{ form.registrar.label }}</label> <br>
       {{ form.registrar }}
     </div>   <br> <br>
-   <button type="submit" value="Submit"
+   <button type="submit" value="Submit" class="btn btn-outline-primary"
    >Submit</button>
  
     </form>
-      
+    <br>
+    
+    <a type="button" class="btn btn-outline-primary" href="{% url 'register' %}">Go back</a>
+  </div>
 </body>
 </html>

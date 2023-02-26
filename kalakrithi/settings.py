@@ -1,3 +1,5 @@
+import os
+
 """
 Django settings for kalakrithi project.
 
@@ -140,8 +142,8 @@ LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'home'
 import os
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '146228340074-4bs08fag8pogh9mvc6p8f3qvk6u36q5k.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('OAUTH2_SECRET')
 
 SESSION_COOKIE_AGE = 60 * 60 * 24
 
@@ -149,3 +151,15 @@ CSRF_TRUSTED_ORIGINS = ['https://kalakrithi-fest.shravanjerry007.repl.co','https
 
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
+
+
+from django.contrib.messages import constants as messages
+
+
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+ }

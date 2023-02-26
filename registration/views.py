@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from .forms import qrcontent , student_details
 from .models import qrvalues , participant ,registrar
+from django.contrib import messages
 
 def home(request):
     if request.user.is_authenticated:
@@ -34,8 +35,8 @@ def savedetails(request):
       else:
         details = participant(fullname=fullname,registrationnumber=registrationnumber,email=email,phone=phone,year=year,branch=branch,institute=institute,campus=campus,qrtext=qrtext,qrhash=qrhash,registrar=registrar)
         details.save()
-        status = "Your details updated successfully"
-        return redirect("/register",{'error': status})
+        messages.success(request, 'Participant details updated.')
+        return redirect("/register")
   else:
     return render(request, 'index.html')
      
