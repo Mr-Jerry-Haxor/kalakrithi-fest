@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'registration',
     'verification',
     'social_django',
+    'import_export',
 ]
 
 MIDDLEWARE = [
