@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-i55qf&58!+psd%lw=oijfrq5q2jkcw@%k7lazatk*$)w*nzkv_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['026b-2401-4900-22a7-60bb-383e-227c-4dcf-9b1d.in.ngrok.io ']
+ALLOWED_HOSTS = ["e813f790-f545-407f-a989-ab8e69f3b547.id.repl.co","kalakrithi-fest.shravanjerry007.repl.co"]
 
 
 # Application definition
@@ -142,7 +142,7 @@ LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'home'
 import os
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = str(os.getenv('OAUTH2_KEY'))
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = str(os.getenv('OAUTH2_SECRET'))
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '146228340074-4bs08fag8pogh9mvc6p8f3qvk6u36q5k.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 SESSION_COOKIE_AGE = 60 * 60 * 24
