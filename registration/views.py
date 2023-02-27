@@ -55,6 +55,8 @@ def savedetails(request):
         details.save()
         messages.success(request, 'Participant details updated.')
         return redirect("/register")
+    else:
+      return redirect('home')
   else:
     return redirect('home')
 
@@ -159,5 +161,14 @@ def verifydetails(request):
       )
       entry_update.save()
       return redirect('verify')
+    else:
+      return redirect('home')
   else:
     return redirect('home')
+
+
+
+
+
+def page_not_found_view(request, exception):
+    return render(request, '404.html', status=404)
