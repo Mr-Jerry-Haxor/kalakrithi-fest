@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from .forms import qrcontent, student_details, verify_details
+from .forms import qrcontent, student_details, verify_details , outentryupdateform
 from .models import qrvalues, participant, registrar, verification_status, entries
 from django.contrib import messages
 
@@ -132,10 +132,14 @@ def verify(request):
         elif verification_status.objects.filter(
             Q(qrhash=qrcode) & Q(status="IN")).exists():
           entries_data = entries.objects.filter(qrhash=qrcode).values()
-          print(entries_data)
+          sdata = {
+        'qrhash': qrcode,
+      }
           return render(request, 'admitted.html',
-                        {'entrydata': entries_data})
+                        {'entrydata': entries_data, 'qrhash':qrcode,'registrationnumber': entry[0]['registrationnumber'], 'form':outentryupdateform(sdata) })
       else:
+        qrcode = request.POST.get('qrtext')
+        
         vdata = {
           'fullname': entry[0]['fullname'],
           'registrationnumber': entry[0]['registrationnumber'],
@@ -162,35 +166,52 @@ def verify(request):
 def verifydetails(request):
   if request.user.is_authenticated:
     if request.method == 'POST':
-      fullname = request.POST.get('fullname')
-      registrationnumber = request.POST.get('registrationnumber')
-      email = request.POST.get('email')
-      qrtext = request.POST.get('qrtext')
-      qrhash = request.POST.get('qrhash')
-      verifiedby = request.POST.get('verifiedby')
-      status = "IN"
-      status_update = verification_status(
-        fullname=fullname,
-        registrationnumber=registrationnumber,
-        email=email,
-        qrtext=qrtext,
-        qrhash=qrhash,
-        status=status)
-      status_update.save()
-
-      utc = datetime.now()
-      ist = utc + timedelta(hours=5, minutes=30)
-      todaydate = datetime.date(ist)
-      timenow = datetime.time(ist)
-      entry_update = entries(registrationnumber=registrationnumber,
-                             qrtext=qrtext,
-                             qrhash=qrhash,
-                             date=todaydate,
-                             time=timenow,
-                             verifiedby=verifiedby,
-                             status="IN")
-      entry_update.save()
-      return redirect('verify')
+      if verification_status.objects.filter( Q(qrhash=request.POST.get('qrhash')) & Q(status="OUT")).exists():
+        verification_status.objects.filter(qrhash=request.POST.get('qrhash')).update(status='IN')
+        utc = datetime.now()
+        ist = utc + timedelta(hours=5, minutes=30)
+        todaydate = datetime.date(ist)
+        timenow = datetime.time(ist)
+        entry_update = entries(registrationnumber=request.POST.get('registrationnumber'),
+                               qrtext=request.POST.get('qrtext'),
+                               qrhash=request.POST.get('qrhash'),
+                               date=todaydate,
+                               time=timenow,
+                               verifiedby=request.POST.get('verifiedby'),
+                               status="IN")
+        entry_update.save()
+        return redirect('verify')
+      else:
+        
+        fullname = request.POST.get('fullname')
+        registrationnumber = request.POST.get('registrationnumber')
+        email = request.POST.get('email')
+        qrtext = request.POST.get('qrtext')
+        qrhash = request.POST.get('qrhash')
+        verifiedby = request.POST.get('verifiedby')
+        status = "IN"
+        status_update = verification_status(
+          fullname=fullname,
+          registrationnumber=registrationnumber,
+          email=email,
+          qrtext=qrtext,
+          qrhash=qrhash,
+          status=status)
+        status_update.save()
+  
+        utc = datetime.now()
+        ist = utc + timedelta(hours=5, minutes=30)
+        todaydate = datetime.date(ist)
+        timenow = datetime.time(ist)
+        entry_update = entries(registrationnumber=registrationnumber,
+                               qrtext=qrtext,
+                               qrhash=qrhash,
+                               date=todaydate,
+                               time=timenow,
+                               verifiedby=verifiedby,
+                               status="IN")
+        entry_update.save()
+        return redirect('verify')
     else:
       return redirect('home')
   else:
@@ -199,3 +220,31 @@ def verifydetails(request):
 
 def page_not_found_view(request, exception):
   return render(request, '404.html', status=404)
+
+
+
+def outentryupdate(request):
+  if request.user.is_authenticated :
+    if request.method == 'POST':
+      qrcode = request.POST.get('qrhash')
+      
+      entry = participant.objects.filter(qrhash=qrcode).values()
+      verification_status.objects.filter(qrhash=qrcode).update(status='OUT')
+      utc = datetime.now()
+      ist = utc + timedelta(hours=5, minutes=30)
+      todaydate = datetime.date(ist)
+      timenow = datetime.time(ist)
+      entry_update = entries(registrationnumber=entry[0]['registrationnumber'],
+                             qrtext=entry[0]['qrtext'],
+                             qrhash=qrcode,
+                             date=todaydate,
+                             time=timenow,
+                             verifiedby= request.user.first_name,
+                             status="OUT")
+      entry_update.save()
+      return redirect('verify')
+    else:
+      return redirect('verify')
+  else:
+    return redirect('home')
+    

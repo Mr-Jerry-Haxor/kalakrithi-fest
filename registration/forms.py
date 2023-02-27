@@ -32,3 +32,6 @@ class verify_details(forms.Form):
   qrtext = forms.CharField(max_length=100,required=True,label="QR code : ",widget=forms.TextInput(attrs={'readonly':'readonly'}))
   qrhash = forms.CharField(max_length=100,required=True,label="QR Hash : ",widget=forms.TextInput(attrs={'readonly':'readonly'}))
   verifiedby =forms.CharField(max_length=100,required=False,label="Verified By : ",widget=forms.TextInput(attrs={'readonly':'readonly'}))
+
+class outentryupdateform(forms.Form):
+  qrhash = forms.CharField(max_length=100,required=True,label="QR Hash : ",widget=forms.TextInput(attrs={'readonly':'readonly'}))

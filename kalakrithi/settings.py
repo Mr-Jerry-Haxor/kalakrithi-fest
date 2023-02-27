@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-i55qf&58!+psd%lw=oijfrq5q2jkcw@%k7lazatk*$)w*nzkv_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["e813f790-f545-407f-a989-ab8e69f3b547.id.repl.co","kalakrithi-fest.shravanjerry007.repl.co"]
 
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'kalakrithi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
