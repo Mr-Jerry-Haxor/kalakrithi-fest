@@ -68,26 +68,26 @@ admin.site.register(verification_status, verification_status_admin)
 
 
 class entries_admin(ImportExportModelAdmin):
-  ordering = ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby')
-  list_display = ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby')
-  list_filter = ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby')
-  search_fields = ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby')
+  ordering = ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby', 'status')
+  list_display = ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby', 'status')
+  list_filter = ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby', 'status')
+  search_fields = ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby', 'status')
   def get_list_display(self, request):
       if request.user.is_superuser:
-          return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby')
-      return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby')
+          return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby', 'status')
+      return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby', 'status')
   def get_list_filter(self, request):
       if request.user.is_superuser:
-          return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby')
-      return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby')
+          return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby', 'status')
+      return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby', 'status')
   def get_search_fields(self, request):
       if request.user.is_superuser:
-          return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby')
-      return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby')
+          return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby', 'status')
+      return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby', 'status')
   def get_ordering(self, request):
       if request.user.is_superuser:
-          return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby')
-      return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby')
+          return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby', 'status')
+      return ('registrationnumber','qrtext', 'qrhash' , 'date', 'time', 'verifiedby', 'status')
 
 
 admin.site.register(entries, entries_admin)

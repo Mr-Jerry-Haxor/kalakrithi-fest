@@ -41,3 +41,4 @@ class entries(models.Model):
   date = models.DateField()
   time = models.TimeField()
   verifiedby = models.CharField(max_length=200)
+  status = models.CharField(max_length=200 , null=True)
