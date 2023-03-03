@@ -19,6 +19,12 @@
            height: 400px;
           position: relative;
     }
+    input{
+      border: none;
+    }
+    h2{
+      color: red;
+    }
     h3{
       color:green;
     }
@@ -37,11 +43,12 @@
   </style>
 </head>
 <body>
+<div  style="border:2px solid black; border-radius:10px; margin: 15px 15px;"> 
 <br><br>
   <div style="padding-left:30px;">
   {% if messages %}
       {% for message in messages %}
-<div {% if message.tags %} class="{{ message.tags }}"{% endif %} > <center><h3>{{ message }}</h3></center></div>
+<div {% if message.tags %} class="{{ message.tags }}"{% endif %} > <center><h2>{{ message }}</h2></center></div>
       {% endfor %}
   {% endif %}
   </div>
@@ -87,17 +94,21 @@
 <div class="form-group">
 <form action="" method="post" validate >
   {% csrf_token %}
-  <label for="{{ form.qrtext.id_for_label }}">{{ form.qrtext.label }}</label><br>
-  {{ form.qrtext }}<br><br>
-  <label for="{{ form.registrar.id_for_label }}">Verification By</label><br>
+  <label for="{{ form.qrtext.id_for_label }}" style="padding-left:50px ;"><center><b>Scan QR code</b></center></label><br>
+  {{ form.qrtext }}<br>
+  <label for="{{ form.registrar.id_for_label }}"><b>Verification By : </b></label><br>
   {{ form.registrar }}<br>
   <button style="padding:5px; position:relative; left:70px;" class="btn btn-link" id="submitbtn" type="submit" value="" disabled="autofocus" ></button>
   <br>
   <a type="button" style="padding:5px; position:relative; left:70px;"  class="btn btn-outline-primary" href="{% url 'home' %}">Home</a>
   <br><br>
-          <center><h3>Admitted participants : {{ admitted }}</h3></center>
-  <br><center><h3>went out participants : {{ out }}</h3></center>
+  
 
 </form>
+<center><h3>Admitted : {{ admitted }}</h3></center>
+<br>
+<center><h3>OUT participants : {{ out }}</h3></center>
+</div>
+
 </body>
 </html>

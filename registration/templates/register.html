@@ -38,6 +38,7 @@
   </style>
 </head>
 <body>
+<div  style="border:2px solid black; border-radius:10px; margin: 15px 15px;"> 
 <br><br>
   <div style="padding-left:30px;">
   {% if messages %}
@@ -87,7 +88,7 @@
 <div class="form-group">
 <form action="" method="post" validate >
   {% csrf_token %}
-  <label for="{{ form.qrtext.id_for_label }}">{{ form.qrtext.label }}</label><br>
+  <label for="{{ form.qrtext.id_for_label }}">QR Code : </label><br>
   {{ form.qrtext }}<br><br>
   <label for="{{ form.registrar.id_for_label }}">{{ form.registrar.label }}</label><br>
   {{ form.registrar }}<br><br>
@@ -98,6 +99,7 @@
           <center><h3>Passes Sold : {{ passessold }}</h3></center>
 
 </form>
-    
+</div>  
+</div>
 </body>
 </html>

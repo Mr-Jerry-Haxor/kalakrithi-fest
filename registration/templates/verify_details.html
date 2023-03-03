@@ -31,61 +31,89 @@
     <div class="border-box">
     <br>
       
-    <center><img id="Image1" src="{{ imglink }}" style="height:114px;width:109px;border-width:0px;"><br><br>
+    <center><img id="Image1" src="{{ imglink }}" style="height:124px;width:109px;border-width:7px;"><br><br>
       <form action="{% url 'verifydetails' %}" method="post" validate>
     {% csrf_token %}
     
     <div class="form-group">
-      <label for="{{ form.fullname.id_for_label }}">{{ form.fullname.label }}</label> 
+      <b><label for="{{ form.fullname.id_for_label }}">Name : </label> </b>
       {{ form.fullname }}
     </div>
  <br>
     
     <div class="form-group">
-      <label for="{{ form.registrationnumber.id_for_label }}">{{ form.registrationnumber.label }}</label>
+      <b><label for="{{ form.registrationnumber.id_for_label }}">{{ form.registrationnumber.label }}</label> </b>
       {{ form.registrationnumber }}
     </div> <br>
     <div class="form-group">
-      <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label> 
+      <b><label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>  </b>
       {{ form.email }}
     </div> <br>
     <div class="form-group">
-      <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label> 
+      <b><label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>  </b>
       {{ form.phone }}
     </div> <br>
     <div class="form-group">
-      <label for="{{ form.year.id_for_label }}">{{ form.year.label }}</label> 
+      <b><label for="{{ form.year.id_for_label }}">{{ form.year.label }}</label>  </b>
       {{ form.year }}
     </div> <br>
     <div class="form-group">
-      <label for="{{ form.branch.id_for_label }}">{{ form.branch.label }}</label>
+      <b><label for="{{ form.branch.id_for_label }}">{{ form.branch.label }}</label> </b>
       {{ form.branch }}
     </div> <br>
     <div class="form-group">
-      <label for="{{ form.institute.id_for_label }}">{{ form.institute.label }}</label> 
+      <b><label for="{{ form.institute.id_for_label }}">{{ form.institute.label }}</label>  </b>
       {{ form.institute }}
     </div> <br>
     <div class="form-group">
-      <label for="{{ form.campus.id_for_label }}">{{ form.campus.label }}</label> 
-      {{ form.campus }}
-    </div>
-        <br>
-    <div class="form-group">
-      <label for="{{ form.qrtext.id_for_label }}">{{ form.qrtext.label }}</label> 
+      <b><label for="{{ form.qrtext.id_for_label }}">Serial no : </label>  </b>
       {{ form.qrtext }}
     </div>
         <br>
     <div class="form-group">
-      <label for="{{ form.qrhash.id_for_label }}">{{ form.qrhash.label }}</label> 
+      <b><label for="{{ form.qrhash.id_for_label }}">QR code :  </label>  </b>
       {{ form.qrhash }}
     </div>
         <br>
     <div class="form-group">
-      <label for="{{ form.verifiedby.id_for_label }}">{{ form.verifiedby.label }}</label> 
+       <b><label for="{{ form.verifiedby.id_for_label }}">{{ form.verifiedby.label }}</label>  </b>
       {{ form.verifiedby }}
-    </div>   <br> <br>
+    </div>   <br>
+
+    
+    {% if entrydata %}
+    <div style="width: fit ;padding-left:20px;padding-right:20px;">
+    <table class="table table-bordered" >
+      <thead>
+        <tr>
+          <th scope="col">Time</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        {% for post in entrydata %}
+          {% if post.status == 'IN' %}  
+          <tr>
+            <td class="table-success">{{ post.time }}</td>
+            <td class="table-success">{{ post.status }}</td>
+          </tr>
+          {% endif %}
+          {% if post.status == 'OUT' %}  
+          <tr>
+            <td class="table-danger">{{ post.time }}</td>
+            <td class="table-danger">{{ post.status }}</td>
+          </tr>
+          {% endif %}
+        {% endfor %}
+        
+    </table>
+    </div>
+    {% endif %}
+        
+        
    <center><button type="submit" value="Submit" class="btn btn-outline-primary"
-   >Admit</button></center>
+   ><b>Admit</b></button></center>
   
     </form>
     <br>

@@ -140,21 +140,31 @@ def verify(request):
             }
             vform = verify_details(vdata)
             imglink = f"https://doeresults.gitam.edu/photo/img.aspx?id={entry[0]['registrationnumber']}"
-            return render(request, 'verify_details.html', {
-              'form': vform,
-              'imglink': imglink
-            })
+            if entries.objects.filter(qrhash=entry[0]['qrhash']).exists():
+              entries_data = entries.objects.filter(qrhash=qrcode).values()
+              return render(request, 'verify_details.html', {
+                'form': vform,
+                'entrydata': entries_data,
+                'imglink': imglink
+              })
+            else:
+              return render(request, 'verify_details.html', {
+                'form': vform,
+                'imglink': imglink
+              })
           elif verification_status.objects.filter(
               Q(qrhash=qrcode) & Q(status="IN")).exists():
             entries_data = entries.objects.filter(qrhash=qrcode).values()
             sdata = {
               'qrhash': qrcode,
             }
+            imglink = f"https://doeresults.gitam.edu/photo/img.aspx?id={entry[0]['registrationnumber']}"
             return render(
               request, 'admitted.html', {
                 'entrydata': entries_data,
                 'qrhash': qrcode,
                 'registrationnumber': entry[0]['registrationnumber'],
+                'imglink' : imglink,
                 'form': outentryupdateform(sdata)
               })
         else:
@@ -168,7 +178,6 @@ def verify(request):
             'year': entry[0]['year'],
             'branch': entry[0]['branch'],
             'institute': entry[0]['institute'],
-            'campus': entry[0]['campus'],
             'qrtext': entry[0]['qrtext'],
             'qrhash': entry[0]['qrhash'],
             'verifiedby': request.user.first_name
@@ -180,7 +189,8 @@ def verify(request):
             'imglink': imglink
           })
       else:
-        return render(request, 'message.html', {'message': 'Invalid QR'})
+        messages.success(request, 'Invalid QR')
+        return redirect('verify')     #render(request, 'message.html', {'message': 'Invalid QR'})
   else:
     return redirect('home')
 
